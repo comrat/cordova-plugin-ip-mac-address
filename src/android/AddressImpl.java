@@ -30,8 +30,7 @@ public class AddressImpl extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray data, final CallbackContext callbackContext) throws JSONException {
-        switch (action) {
-            case "getIPAddress":
+        if (action == "getIPAddress") {
                 // need to send appId and password and image path
                 callbackCtx = callbackContext;
                 ctx = this.cordova.getActivity().getApplicationContext();
@@ -55,9 +54,9 @@ public class AddressImpl extends CordovaPlugin {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                
+
                return true;
-            case "getMACAddress":
+        } else if (action == "getMACAddress") {
                 callbackCtx = callbackContext;
                 ctx = this.cordova.getActivity().getApplicationContext();
                 activity = this.cordova.getActivity();
@@ -70,7 +69,7 @@ public class AddressImpl extends CordovaPlugin {
                 callbackCtx.sendPluginResult(result);
 
                 return true;
-            default:
+        } else {
                 return true;
         }
     }
